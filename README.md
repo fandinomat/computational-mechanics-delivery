@@ -1,2 +1,2 @@
 # computational-mechanics
-Mechanics worksheets created in Python notebooks
+Mechanics worksheets using Python notebooks
