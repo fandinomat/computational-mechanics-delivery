@@ -8,6 +8,7 @@
 
 import matplotlib.pyplot as plt
 import math
+import numpy as np
 from mpl_toolkits import mplot3d
 
 
@@ -24,8 +25,14 @@ def plot(xAxis, yAxis, xTitle, yTitle):
 # on a single plot
 def multiplot(xAxis, yAxes, ylbls, xTitle, yTitle):
     plt.figure(figsize=(7, 5))
+    multy_x = isinstance(xAxis[0], (list, np.ndarray))
     for ii in range(len(yAxes)):
-        plt.plot(xAxis, yAxes[ii], label=ylbls[ii])
+        if multy_x:
+            # Assume there is an idependent axis for each dependent one
+            plt.plot(xAxis[ii], yAxes[ii], label=ylbls[ii])
+        else:
+            # Assume all plots share the same dependent axis
+            plt.plot(xAxis, yAxes[ii], label=ylbls[ii])
     plt.xlabel(xTitle)
     plt.ylabel(yTitle)
     plt.grid()
